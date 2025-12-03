@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -66,4 +66,17 @@ app.post('/api/faucet', async (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
+});
+
+// Serve static files from the React app
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });

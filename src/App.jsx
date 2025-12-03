@@ -52,7 +52,7 @@ function App() {
     setStatus({ type: '', message: '' });
 
     try {
-      const response = await fetch('http://localhost:3001/api/faucet', {
+      const response = await fetch('/api/faucet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ address: walletAddress, amount: 0.0001 }),
@@ -93,7 +93,7 @@ function App() {
         {!walletAddress ? (
           <button className="btn-secondary" onClick={connectWallet} style={{ width: 'auto', alignItems: 'center', gap: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Wallet size={25} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} />
-            <p style={{fontSize: '1rem', fontWeight: 'bold', color: 'var(--text-main)', display: "flex"}}>Connect Wallet</p>
+            <p style={{ fontSize: '1rem', fontWeight: 'bold', color: 'var(--text-main)', display: "flex" }}>Connect Wallet</p>
           </button>
         ) : (
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
